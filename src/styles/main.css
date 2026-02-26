@@ -1,0 +1,396 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   BIRD JOURNAL THEME
+   Inspired by natural history editorial design:
+   warm cream pages, earthy ink, illustrated nature motifs
+   ============================================================ */
+
+@theme inline {
+  /* --- Radius Scale --- */
+  --radius-sm:  calc(var(--radius) - 4px);
+  --radius-md:  calc(var(--radius) - 2px);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  /* --- Semantic Color Aliases --- */
+  --color-background:              var(--background);
+  --color-foreground:              var(--foreground);
+  --color-card:                    var(--card);
+  --color-card-foreground:         var(--card-foreground);
+  --color-popover:                 var(--popover);
+  --color-popover-foreground:      var(--popover-foreground);
+  --color-primary:                 var(--primary);
+  --color-primary-foreground:      var(--primary-foreground);
+  --color-secondary:               var(--secondary);
+  --color-secondary-foreground:    var(--secondary-foreground);
+  --color-muted:                   var(--muted);
+  --color-muted-foreground:        var(--muted-foreground);
+  --color-accent:                  var(--accent);
+  --color-accent-foreground:       var(--accent-foreground);
+  --color-destructive:             var(--destructive);
+  --color-border:                  var(--border);
+  --color-input:                   var(--input);
+  --color-ring:                    var(--ring);
+  --color-chart-1:                 var(--chart-1);
+  --color-chart-2:                 var(--chart-2);
+  --color-chart-3:                 var(--chart-3);
+  --color-chart-4:                 var(--chart-4);
+  --color-chart-5:                 var(--chart-5);
+  --color-sidebar:                 var(--sidebar);
+  --color-sidebar-foreground:      var(--sidebar-foreground);
+  --color-sidebar-primary:         var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:          var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border:          var(--sidebar-border);
+  --color-sidebar-ring:            var(--sidebar-ring);
+
+  /* ── Extended Palette ─────────────────────────────────────
+     Named after natural materials & bird plumage so your
+     team can reference them semantically in components.     */
+
+  /* Feather Palette — chart / illustration accents */
+  --color-feather-cardinal:   var(--feather-cardinal);   /* vivid red       */
+  --color-feather-jay:        var(--feather-jay);        /* cobalt blue     */
+  --color-feather-canary:     var(--feather-canary);     /* golden yellow   */
+  --color-feather-kingfisher: var(--feather-kingfisher); /* teal            */
+  --color-feather-robin:      var(--feather-robin);      /* warm orange     */
+  --color-feather-dove:       var(--feather-dove);       /* dusty mauve     */
+  --color-feather-warbler:    var(--feather-warbler);    /* sage green      */
+  --color-feather-flamingo:   var(--feather-flamingo);   /* blush pink      */
+
+  /* Ink Palette — typographic tones */
+  --color-ink-darkest:  var(--ink-darkest);
+  --color-ink-dark:     var(--ink-dark);
+  --color-ink-mid:      var(--ink-mid);
+  --color-ink-light:    var(--ink-light);
+  --color-ink-ghost:    var(--ink-ghost);
+
+  /* Parchment Palette — surface tones */
+  --color-parchment-base:    var(--parchment-base);
+  --color-parchment-warm:    var(--parchment-warm);
+  --color-parchment-cool:    var(--parchment-cool);
+  --color-parchment-deep:    var(--parchment-deep);
+}
+
+/* ============================================================
+   LIGHT MODE  (warm parchment journal)
+   ============================================================ */
+:root {
+  /* Shape */
+  --radius: 0.5rem;
+
+  /* ── Parchment Surfaces ─── */
+  --parchment-base: oklch(0.960 0.012 85);   /* #f0ebe0 warm cream       */
+  --parchment-warm: oklch(0.940 0.018 80);   /* slightly deeper cream    */
+  --parchment-cool: oklch(0.970 0.006 90);   /* near-white, cooler tint  */
+  --parchment-deep: oklch(0.900 0.022 75);   /* warm tan — cards/insets  */
+
+  /* ── Ink Tones ─── */
+  --ink-darkest: oklch(0.220 0.020 60);  /* rich dark brown-black        */
+  --ink-dark:    oklch(0.330 0.025 55);  /* dark espresso                */
+  --ink-mid:     oklch(0.480 0.020 60);  /* medium warm brown            */
+  --ink-light:   oklch(0.640 0.018 65);  /* caption / sidenote grey      */
+  --ink-ghost:   oklch(0.820 0.012 70);  /* very light — decorative      */
+
+  /* ── Feather Accents ─── */
+  --feather-cardinal:   oklch(0.560 0.200 25);   /* terracotta-red           */
+  --feather-jay:        oklch(0.510 0.155 240);  /* cobalt blue              */
+  --feather-canary:     oklch(0.780 0.160 85);   /* warm golden yellow       */
+  --feather-kingfisher: oklch(0.580 0.140 195);  /* teal / cyan-green        */
+  --feather-robin:      oklch(0.650 0.165 50);   /* warm amber-orange        */
+  --feather-dove:       oklch(0.700 0.090 340);  /* dusty mauve-pink         */
+  --feather-warbler:    oklch(0.620 0.110 155);  /* muted sage green         */
+  --feather-flamingo:   oklch(0.760 0.110 10);   /* soft blush pink          */
+
+  /* ── Shadcn / UI Primitives (mapped to palette) ─── */
+  --background:          var(--parchment-base);
+  --foreground:          var(--ink-darkest);
+
+  --card:                var(--parchment-deep);
+  --card-foreground:     var(--ink-darkest);
+
+  --popover:             var(--parchment-cool);
+  --popover-foreground:  var(--ink-darkest);
+
+  /* Primary = deep terracotta-red (like cardinal or the coral links) */
+  --primary:             var(--feather-cardinal);
+  --primary-foreground:  oklch(0.985 0.005 60);
+
+  /* Secondary = warm sand */
+  --secondary:           oklch(0.930 0.020 78);
+  --secondary-foreground: var(--ink-dark);
+
+  /* Muted = lightest parchment */
+  --muted:               var(--parchment-cool);
+  --muted-foreground:    var(--ink-light);
+
+  /* Accent = canary yellow */
+  --accent:              oklch(0.920 0.040 80);
+  --accent-foreground:   var(--ink-darkest);
+
+  --destructive:         oklch(0.540 0.215 27);
+
+  --border:              oklch(0.840 0.018 75);
+  --input:               oklch(0.870 0.015 75);
+  --ring:                var(--feather-cardinal);
+
+  /* ── Data / Chart Colors (bird plumage set) ─── */
+  --chart-1: var(--feather-cardinal);   /* red     */
+  --chart-2: var(--feather-jay);        /* blue    */
+  --chart-3: var(--feather-canary);     /* yellow  */
+  --chart-4: var(--feather-kingfisher); /* teal    */
+  --chart-5: var(--feather-robin);      /* orange  */
+
+  /* chart extras — accessible via CSS directly */
+  --chart-6: var(--feather-dove);       /* mauve   */
+  --chart-7: var(--feather-warbler);    /* green   */
+  --chart-8: var(--feather-flamingo);   /* pink    */
+
+  /* ── Sidebar ─── */
+  --sidebar:                    var(--parchment-warm);
+  --sidebar-foreground:         var(--ink-dark);
+  --sidebar-primary:            var(--feather-cardinal);
+  --sidebar-primary-foreground: oklch(0.985 0.005 60);
+  --sidebar-accent:             var(--parchment-deep);
+  --sidebar-accent-foreground:  var(--ink-darkest);
+  --sidebar-border:             var(--border);
+  --sidebar-ring:               var(--feather-cardinal);
+}
+
+/* ============================================================
+   DARK MODE  (evening field notes — deep bark & ember tones)
+   ============================================================ */
+.dark {
+  /* ── Surfaces ─── */
+  --background:          oklch(0.175 0.018 55);   /* very dark warm brown   */
+  --foreground:          oklch(0.940 0.010 75);   /* warm off-white         */
+
+  --card:                oklch(0.230 0.022 55);
+  --card-foreground:     oklch(0.940 0.010 75);
+
+  --popover:             oklch(0.230 0.022 55);
+  --popover-foreground:  oklch(0.940 0.010 75);
+
+  /* Primary = lighter terracotta-peach in dark mode */
+  --primary:             oklch(0.720 0.155 40);
+  --primary-foreground:  oklch(0.175 0.018 55);
+
+  --secondary:           oklch(0.285 0.025 55);
+  --secondary-foreground: oklch(0.940 0.010 75);
+
+  --muted:               oklch(0.270 0.020 55);
+  --muted-foreground:    oklch(0.650 0.020 70);
+
+  --accent:              oklch(0.310 0.030 70);
+  --accent-foreground:   oklch(0.940 0.010 75);
+
+  --destructive:         oklch(0.680 0.200 22);
+
+  --border:              oklch(1 0 0 / 12%);
+  --input:               oklch(1 0 0 / 16%);
+  --ring:                oklch(0.720 0.155 40);
+
+  /* ── Chart Colors — same hues, boosted lightness for dark bg ─── */
+  --chart-1: oklch(0.660 0.195 25);   /* ember red        */
+  --chart-2: oklch(0.580 0.165 245);  /* dusk blue        */
+  --chart-3: oklch(0.800 0.155 88);   /* firefly yellow   */
+  --chart-4: oklch(0.640 0.145 190);  /* moonlit teal     */
+  --chart-5: oklch(0.710 0.160 52);   /* lantern orange   */
+
+  /* ── Feather Accents (brighter for dark surfaces) ─── */
+  --feather-cardinal:   oklch(0.660 0.195 25);
+  --feather-jay:        oklch(0.580 0.165 245);
+  --feather-canary:     oklch(0.820 0.155 88);
+  --feather-kingfisher: oklch(0.640 0.145 190);
+  --feather-robin:      oklch(0.710 0.160 52);
+  --feather-dove:       oklch(0.740 0.095 340);
+  --feather-warbler:    oklch(0.670 0.115 155);
+  --feather-flamingo:   oklch(0.800 0.110 10);
+
+  /* ── Ink (now used for lighter text layering) ─── */
+  --ink-darkest: oklch(0.940 0.010 75);
+  --ink-dark:    oklch(0.870 0.015 75);
+  --ink-mid:     oklch(0.750 0.020 70);
+  --ink-light:   oklch(0.620 0.018 70);
+  --ink-ghost:   oklch(0.400 0.015 65);
+
+  /* ── Parchment (reversed — used for highlights) ─── */
+  --parchment-base:  oklch(0.175 0.018 55);
+  --parchment-warm:  oklch(0.210 0.022 55);
+  --parchment-cool:  oklch(0.230 0.016 60);
+  --parchment-deep:  oklch(0.260 0.025 58);
+
+  /* ── Sidebar ─── */
+  --sidebar:                    oklch(0.210 0.022 55);
+  --sidebar-foreground:         oklch(0.940 0.010 75);
+  --sidebar-primary:            oklch(0.720 0.155 40);
+  --sidebar-primary-foreground: oklch(0.175 0.018 55);
+  --sidebar-accent:             oklch(0.270 0.022 56);
+  --sidebar-accent-foreground:  oklch(0.940 0.010 75);
+  --sidebar-border:             oklch(1 0 0 / 12%);
+  --sidebar-ring:               oklch(0.720 0.155 40);
+}
+
+/* ============================================================
+   BASE LAYER
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+
+    /* Subtle paper grain overlay — feels like real stock */
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-blend-mode: multiply;
+  }
+
+  /* ── Typography defaults ─── */
+  h1, h2, h3, h4, h5, h6 {
+    /* Use a serif stack for editorial headings */
+    font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
+    color: var(--ink-darkest);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  body, p, li, td {
+    /* Clean humanist serif for body — evokes field-guide prose */
+    font-family: "Lora", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    line-height: 1.75;
+    color: var(--ink-dark);
+  }
+
+  /* Caption / sidenote text */
+  small, figcaption, .caption, [data-caption] {
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+    color: var(--ink-light);
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  /* Label / UI text — slightly humanist sans */
+  label, .label, [role="tab"], button, .badge {
+    font-family: "Libre Baskerville", "Georgia", serif;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+  }
+
+  /* ── Section label (PART ONE style caps) ─── */
+  .section-label {
+    font-family: "Libre Baskerville", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--feather-cardinal);
+    font-weight: 700;
+  }
+
+  /* ── Editorial dashed divider ─── */
+  hr {
+    border: none;
+    border-top: 1.5px dashed var(--border);
+    margin: 2rem 0;
+    opacity: 0.7;
+  }
+
+  /* ── Scrollbar — thin, warm ─── */
+  ::-webkit-scrollbar        { width: 5px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 5px; }
+  *                          { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+}
+
+/* ============================================================
+   UTILITY CLASSES  (optional helpers)
+   These layer on top of Tailwind and use the theme tokens.
+   ============================================================ */
+@layer utilities {
+
+  /* Feather color utilities */
+  .text-cardinal   { color: var(--feather-cardinal); }
+  .text-jay        { color: var(--feather-jay); }
+  .text-canary     { color: var(--feather-canary); }
+  .text-kingfisher { color: var(--feather-kingfisher); }
+  .text-robin      { color: var(--feather-robin); }
+  .text-dove       { color: var(--feather-dove); }
+  .text-warbler    { color: var(--feather-warbler); }
+  .text-flamingo   { color: var(--feather-flamingo); }
+
+  .bg-cardinal     { background-color: var(--feather-cardinal); }
+  .bg-jay          { background-color: var(--feather-jay); }
+  .bg-canary       { background-color: var(--feather-canary); }
+  .bg-kingfisher   { background-color: var(--feather-kingfisher); }
+  .bg-robin        { background-color: var(--feather-robin); }
+  .bg-dove         { background-color: var(--feather-dove); }
+  .bg-warbler      { background-color: var(--feather-warbler); }
+  .bg-flamingo     { background-color: var(--feather-flamingo); }
+
+  /* Parchment surface utilities */
+  .bg-parchment        { background-color: var(--parchment-base); }
+  .bg-parchment-warm   { background-color: var(--parchment-warm); }
+  .bg-parchment-deep   { background-color: var(--parchment-deep); }
+
+  /* Ink text utilities */
+  .text-ink          { color: var(--ink-darkest); }
+  .text-ink-mid      { color: var(--ink-mid); }
+  .text-ink-light    { color: var(--ink-light); }
+  .text-ink-ghost    { color: var(--ink-ghost); }
+
+  /* Editorial heading style */
+  .heading-editorial {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  /* Sidenote / margin note (right-column style) */
+  .sidenote {
+    font-style: italic;
+    color: var(--ink-light);
+    font-size: 0.825rem;
+    line-height: 1.6;
+    border-left: 2px solid var(--border);
+    padding-left: 0.875rem;
+  }
+
+  /* Illustrated chart bar (warm flat pill) */
+  .chart-bar {
+    height: 10px;
+    border-radius: 9999px;
+    background-color: var(--feather-robin);
+    transition: width 0.4s ease;
+  }
+
+  /* Dot marker (for species lists) */
+  .species-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+     vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  /* Paper card */
+  .paper-card {
+    background-color: var(--parchment-deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+  }
+}

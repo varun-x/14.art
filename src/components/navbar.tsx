@@ -5,6 +5,7 @@ import { useRef, useState } from "react"
 import Logo from "./logo"
 import NavLinks from "./nav-links"
 import Signature from "./signature"
+import Image from "next/image"
 export const AppNavBar = ({ className }: { className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({ target: ref, offset: ["start start", "end start"] })
@@ -41,7 +42,7 @@ export const AppNavBar = ({ className }: { className?: string }) => {
               <Logo blacklink />
               {/* <Signature /> */}
 
-              {visible && <div className="h-7 bg-[#eeceb1] w-1 rounded-full hidden md:block " />}
+              {false && <div className="h-7 bg-[#eeceb1] w-1 rounded-full hidden md:block " />}
               <motion.div
                 className="overflow-hidden"
                 animate={{

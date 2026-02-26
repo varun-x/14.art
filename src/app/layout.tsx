@@ -1,4 +1,4 @@
-import "@/styles/globals.css";
+import "@/styles/main.css";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config";
 import localFont from "next/font/local";
@@ -36,7 +36,7 @@ export default function RootLayout({
     <html suppressHydrationWarning={true} lang="en">
       <body
         suppressHydrationWarning={true}
-        className={cn(playwriteAT.className, "antialiased", "bg-[#f4efe5]")}
+        className={cn(playwriteAT.className, "antialiased", "")}
       >
         {children}
       </body>
