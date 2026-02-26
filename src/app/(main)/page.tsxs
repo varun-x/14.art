@@ -1,0 +1,270 @@
+"use client";
+import { motion, useScroll, useTransform } from "motion/react";
+import Image from "next/image";
+import { useRef } from "react";
+
+const poem = [
+  "You are the rarest bird I've ever known —",
+  "with wings that carry colour through the sky,",
+  "a song that makes the quietest mornings glow,",
+  "and eyes that see the beauty others pass by.",
+  "",
+  "You paint the world the way the sparrow flies —",
+  "without a map, without a reason why,",
+  "just instinct, grace, and something in your soul",
+  "that turns the ordinary into gold.",
+  "",
+  "So here's a little corner of the world,",
+  "a sky with just your name written across it —",
+  "a place for every feather, every flight,",
+  "for everything you are, and all you'll be.",
+];
+
+const BIRDS = [
+  {
+    id: 1,
+    src: "/bird/3.png",
+    className: "absolute top-0 left-40",
+    initial: { x: -120, y: -80, opacity: 0 },
+    delay: 0.1,
+  },
+  {
+    id: 2,
+    src: "/bird/6.png",
+    className: "absolute top-40 right-0",
+    initial: { x: 120, y: -60, opacity: 0 },
+    delay: 0.25,
+  },
+  {
+    id: 3,
+    src: "/bird/1.png",
+    className: "absolute -bottom-20 left-0",
+    initial: { x: -100, y: 100, opacity: 0 },
+    delay: 0.4,
+  },
+  {
+    id: 4,
+    src: "/bird/2.png",
+    className: "absolute left-0 top-40",
+    initial: { x: -120, y: 0, opacity: 0 },
+    delay: 0.15,
+  },
+  {
+    id: 5,
+    src: "/bird/4.png",
+    className: "absolute -top-10",
+    initial: { x: 0, y: -100, opacity: 0 },
+    delay: 0.3,
+  },
+  {
+    id: 6,
+    src: "/bird/5.png",
+    className: "absolute top-0 right-0",
+    initial: { x: 100, y: -80, opacity: 0 },
+    delay: 0.2,
+  },
+  {
+    id: 7,
+    src: "/bird/7.png",
+    className: "absolute right-0 -bottom-35",
+    initial: { x: 100, y: 100, opacity: 0 },
+    delay: 0.45,
+  },
+];
+
+// Split poem into stanzas
+const stanzas: string[][] = [];
+let currentStanza: string[] = [];
+for (const line of poem) {
+  if (line === "") {
+    if (currentStanza.length > 0) {
+      stanzas.push(currentStanza);
+      currentStanza = [];
+    }
+  } else {
+    currentStanza.push(line);
+  }
+}
+if (currentStanza.length > 0) stanzas.push(currentStanza);
+
+export default function AnniversaryPage() {
+  const poemRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <>
+      <main
+        className="relative w-full min-h-screen overflow-x-hidden flex items-center justify-center"
+        style={{ background: "linear-gradient(160deg, #fdf6ec 0%, #fef9f2 50%, #fdf0e0 100%)" }}
+      >
+        {/* Subtle background texture */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "radial-gradient(ellipse at 30% 20%, rgba(210,170,110,0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(180,130,80,0.07) 0%, transparent 55%)",
+            pointerEvents: "none",
+            zIndex: 1,
+          }}
+        />
+
+        {/* Birds */}
+        {BIRDS.map((bird) => (
+          <motion.div
+            key={bird.id}
+            className={bird.className}
+            style={{ position: "absolute", zIndex: 5 }}
+            initial={bird.initial}
+            animate={{ x: 0, y: 0, opacity: 1 }}
+            transition={{
+              duration: 1.4,
+              delay: bird.delay,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+          >
+            <Image
+              src={bird.src}
+              alt={`Bird ${bird.id}`}
+              width={270}
+              height={270}
+              className="w-full h-auto object-contain"
+              style={{
+                filter: "drop-shadow(0 6px 20px oklch(0 0 0 / 0.12))",
+              }}
+            />
+          </motion.div>
+        ))}
+
+        {/* Center Text */}
+        <div className="relative z-10 flex flex-col items-center text-center px-8 pointer-events-none select-none">
+          <motion.p
+            className="anniversary-sub mb-4"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 0.7, ease: "easeOut" }}
+          >
+            Wishing you a
+          </motion.p>
+
+          <motion.h1
+            className="anniversary-title"
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.85, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            Happy Anniversary
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.9, delay: 1.4, ease: "easeOut" }}
+            style={{
+              height: "1px",
+              width: "120px",
+              background: "linear-gradient(90deg, transparent, #c49a5a, transparent)",
+              margin: "1.2rem auto",
+            }}
+          />
+
+          <motion.p
+            className="anniversary-sub"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
+          >
+            with all my love
+          </motion.p>
+        </div>
+
+        {/* Scroll hint */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 z-10 flex flex-col items-center gap-2"
+          style={{ transform: "translateX(-50%)" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.2, duration: 1 }}
+        >
+          <p className="scroll-hint">scroll</p>
+          <motion.div
+            animate={{ y: [0, 7, 0] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            style={{ color: "#c49a5a", fontSize: "1.1rem" }}
+          >
+            ↓
+          </motion.div>
+        </motion.div>
+      </main>
+
+      {/* POEM SECTION */}
+      <section
+        ref={poemRef}
+        className="relative w-full flex items-center justify-center py-24 px-6"
+        style={{
+          background: "linear-gradient(180deg, #fdf0e0 0%, #fdf6ec 40%, #fef9f2 100%)",
+          minHeight: "100vh",
+        }}
+      >
+        {/* Decorative top divider */}
+        <div
+
+        />
+
+        <div className="max-w-xl w-full mx-auto text-center">
+          <motion.p
+            className="anniversary-sub mb-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9 }}
+          >
+            a poem for you
+          </motion.p>
+
+          <div className="flex flex-col gap-8">
+            {stanzas.map((stanza, si) => (
+              <motion.div
+                key={si}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.9,
+                  delay: si * 0.12,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+              >
+                {stanza.map((line, li) => (
+                  <p key={li} className="poem-line">
+                    {line}
+                  </p>
+                ))}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Closing ornament */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="mt-16 flex flex-col items-center gap-3"
+          >
+            <div
+              style={{
+                height: "1px",
+                width: "80px",
+                background: "linear-gradient(90deg, transparent, #c49a5a, transparent)",
+              }}
+            />
+            <p style={{ fontFamily: "'Pinyon Script', cursive", fontSize: "2rem", color: "#c49a5a" }}>
+              ♡
+            </p>
+          </motion.div>
+        </div>
+      </section>
+    </>
+  );
+}
+
