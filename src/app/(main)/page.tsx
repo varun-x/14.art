@@ -1,6 +1,7 @@
 
 "use client";
 
+import Signature from "@/components/signature";
 import { motion } from "motion/react";
 import Image from "next/image";
 
@@ -56,11 +57,11 @@ export default function AnniversaryPage() {
 
       {/* Center Content */}
       <motion.div
-        className="relative z-20 flex flex-col items-center text-center px-8 pointer-events-none select-none"
+        className="relative z-20 flex flex-col items-center text-center px-8 pointer-events-none select-none mt-40"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
-          delay: 1.8,   // appears after all birds
+          delay: 0.2,   // appears after all birds
           duration: 1,
           ease: "easeOut"
         }}
@@ -74,8 +75,8 @@ export default function AnniversaryPage() {
           </div>
           <p> with all my heart </p>
         </div>
+        <Signature />
       </motion.div>
-
     </main>
   );
 }

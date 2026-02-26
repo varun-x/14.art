@@ -140,11 +140,12 @@ export default function Signature() {
       // The original viewBox covers the full signature area
       viewBox="28.6 40 329.31 151.6"
       // Height matches navbar h-8 (32px), width scales proportionally
-      height="32"
+      height="82"
       width="auto"
       style={{ display: "block" }}
       initial="hidden"
       animate="visible"
+      className="mt-10"
     >
       {paths.map((d, index) => (
         <motion.path
