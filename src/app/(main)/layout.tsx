@@ -1,4 +1,3 @@
-import { AppNavBar } from "@/components/navbar";
 
 export default function RootLayout({
   children,
@@ -6,7 +5,6 @@ export default function RootLayout({
 
   return (
     <div>
-      <AppNavBar />
       {children}
     </div>
   );

@@ -4,9 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
-   BIRD JOURNAL THEME
-   Inspired by natural history editorial design:
-   warm cream pages, earthy ink, illustrated nature motifs
    ============================================================ */
 
 @theme inline {

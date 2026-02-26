@@ -72,8 +72,11 @@ export const AppNavBar = ({ className }: { className?: string }) => {
                       delay: visible ? 0 : 0.1,
                     },
                   }}
+
                 >
-                  <span className="">  In love with places I haven't seen yet </span>
+                  <span className="">
+                    To the bird of my heart
+                  </span>
                 </motion.div>
               </motion.div>
             </div>
@@ -87,3 +90,4 @@ export const AppNavBar = ({ className }: { className?: string }) => {
     </motion.div >
   )
 }
+

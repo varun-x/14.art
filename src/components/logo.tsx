@@ -14,7 +14,7 @@ export default function Logo({ blacklink = false, }: LogoProps) {
         src="/bird/1.png"
         alt="Logo"
         fill
-        className={cn("rounded-full object-cover overflow-hidden", "bg-[#eeceb1]")}
+        className={cn("rounded-full object-cover overflow-visible", "bg-[#eeceb1]")}
       />
     </div>
   );
