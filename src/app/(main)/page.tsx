@@ -68,7 +68,7 @@ export default function AnniversaryPage() {
       >
         <div className="flex-col">
           <span className="text-5xl">
-            Happy Anniversary
+            hellow birds
           </span>
           <div>
             <span className="text-feather-cardinal text-4xl mt-2"> aarushi </span>
