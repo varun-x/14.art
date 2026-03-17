@@ -71,9 +71,9 @@ export default function AnniversaryPage() {
             hellow birds
           </span>
           <div>
-            <span className="text-feather-cardinal text-4xl mt-2"> aarushi </span>
+           <span className="text-4xl"> i am </span> <span className="text-feather-cardinal text-4xl mt-2"> aarushi </span>
           </div>
-          <p> with all my heart </p>
+          
         </div>
         <Signature />
       </motion.div>
